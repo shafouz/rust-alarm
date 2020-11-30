@@ -26,16 +26,19 @@ impl Config {
 
     pub fn notification_handler() {
         Notification::new()
-            .summary("time is over")
-            .body("break time")
+            .summary("Alarm")
+            .body("Time started")
             .icon("clock")
+            .timeout(0)
             .show();
     }
 
     pub fn countdown(&self) {
-        for _ in 1..self.seconds {
-            sleep(Duration::from_secs(1));
-        }
+        Config::notification_handler();
+
+            for _ in 1..self.seconds {
+                sleep(Duration::from_secs(1));
+            }
 
         Config::notification_handler();
     }
