@@ -24,23 +24,23 @@ impl Config {
         }
     }
 
-    pub fn notification_handler() {
+    pub fn notification_handler(msg: &str) {
         Notification::new()
             .summary("Alarm")
-            .body("Time started")
+            .body(msg)
             .icon("clock")
             .timeout(0)
             .show();
     }
 
     pub fn countdown(&self) {
-        Config::notification_handler();
+        Config::notification_handler("Time started");
 
             for _ in 1..self.seconds {
                 sleep(Duration::from_secs(1));
             }
 
-        Config::notification_handler();
+        Config::notification_handler("Time ended");
     }
 
 }
